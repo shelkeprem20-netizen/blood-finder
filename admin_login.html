@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | Blood Finder</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-drop">
+            🩸
+        </div>
+
+        <div>
+
+            <strong>
+                Blood Finder
+            </strong>
+
+            <small>
+                Administration
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/find-blood">
+            Find Blood
+        </a>
+
+        <a href="/register">
+            Become a Donor
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= LOGIN AREA ================= -->
+
+<section class="admin-login-page">
+
+
+    <div class="admin-login-card">
+
+
+        <!-- ICON -->
+
+        <div class="admin-login-icon">
+            🛡️
+        </div>
+
+
+        <!-- HEADING -->
+
+        <div class="mini-badge">
+            SECURE ACCESS
+        </div>
+
+
+        <h1>
+            Admin
+            <span>Login</span>
+        </h1>
+
+
+        <p class="admin-login-description">
+            Sign in to manage donor registrations
+            and verification status.
+        </p>
+
+
+
+        <!-- ERROR MESSAGE -->
+
+        {% if error %}
+
+        <div class="admin-login-error">
+
+            ⚠️ {{ error }}
+
+        </div>
+
+        {% endif %}
+
+
+
+        <!-- LOGIN FORM -->
+
+        <form
+            method="POST"
+            action="/admin/login">
+
+
+            <!-- USERNAME -->
+
+            <div class="admin-login-field">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter admin username"
+                    autocomplete="username"
+                    required>
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="admin-login-field">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter admin password"
+                    autocomplete="current-password"
+                    required>
+
+            </div>
+
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="admin-login-button">
+
+                🔐 Sign In to Admin Panel
+
+            </button>
+
+        </form>
+
+
+
+        <!-- SECURITY NOTE -->
+
+        <div class="admin-security-note">
+
+            <span>
+                🔒
+            </span>
+
+            <p>
+                Authorized administration access only.
+            </p>
+
+        </div>
+
+
+
+        <!-- BACK -->
+
+        <a
+            href="/"
+            class="admin-back">
+
+            ← Back to Blood Finder
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-main">
+
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <div class="logo-drop">
+                    🩸
+                </div>
+
+                <div>
+
+                    <strong>
+                        Blood Finder
+                    </strong>
+
+                    <small>
+                        Every Drop Matters
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <p>
+                Connecting blood donors with people
+                who need them.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-links">
+
+            <strong>
+                Explore
+            </strong>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/find-blood">
+                Find Blood
+            </a>
+
+            <a href="/register">
+                Become a Donor
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-links">
+
+            <strong>
+                Project
+            </strong>
+
+            <span>
+                Blood Finder
+            </span>
+
+            <span>
+                College Project
+            </span>
+
+            <span>
+                2026
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 Blood Finder.
+        Built with ❤️ to help save lives.
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

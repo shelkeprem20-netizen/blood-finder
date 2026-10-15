@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Find Blood | Blood Finder</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-drop">
+            🩸
+        </div>
+
+        <div>
+
+            <strong>
+                Blood Finder
+            </strong>
+
+            <small>
+                Every Drop Matters
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/find-blood" class="active">
+            Find Blood
+        </a>
+
+        <a href="/register">
+            Become a Donor
+        </a>
+
+        <a href="/blood-info">
+            Blood Info
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="search-hero">
+
+    <div class="mini-badge">
+        FIND BLOOD
+    </div>
+
+    <h1>
+
+        Find the blood
+        <br>
+
+        <span>you need.</span>
+
+    </h1>
+
+    <p>
+
+        Search for verified and available donors
+        by blood group and location.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     SEARCH SECTION
+===================================================== -->
+
+<section class="search-section">
+
+
+    <div class="search-card">
+
+
+        <div class="search-card-heading">
+
+            <div>
+
+                <div class="mini-badge">
+                    DONOR SEARCH
+                </div>
+
+                <h2>
+                    Search for a donor
+                </h2>
+
+            </div>
+
+
+            <div class="search-icon">
+                🔎
+            </div>
+
+        </div>
+
+
+
+        <form method="POST"
+              action="/find-blood"
+              class="blood-search-form">
+
+
+            <!-- BLOOD GROUP -->
+
+            <div class="search-field">
+
+                <label for="blood_group">
+                    Blood Group
+                </label>
+
+                <select id="blood_group"
+                        name="blood_group"
+                        required>
+
+                    <option value="">
+                        Select blood group
+                    </option>
+
+                    <option value="A+">
+                        A+
+                    </option>
+
+                    <option value="A-">
+                        A-
+                    </option>
+
+                    <option value="B+">
+                        B+
+                    </option>
+
+                    <option value="B-">
+                        B-
+                    </option>
+
+                    <option value="AB+">
+                        AB+
+                    </option>
+
+                    <option value="AB-">
+                        AB-
+                    </option>
+
+                    <option value="O+">
+                        O+
+                    </option>
+
+                    <option value="O-">
+                        O-
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- LOCATION -->
+
+            <div class="search-field">
+
+                <label for="location">
+                    Location
+                </label>
+
+                <input type="text"
+                       id="location"
+                       name="location"
+                       placeholder="Enter city or area"
+                       required>
+
+            </div>
+
+
+
+            <!-- BUTTON -->
+
+            <button type="submit"
+                    class="search-button">
+
+                🔍 Search Donors
+
+            </button>
+
+
+        </form>
+
+
+        <div class="search-note">
+
+            <span>
+                🛡️
+            </span>
+
+            Only verified and currently available
+            donors are displayed.
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SEARCH RESULTS
+===================================================== -->
+
+<section class="results-section">
+
+
+    {% if donors %}
+
+
+        <div class="results-header">
+
+            <div>
+
+                <div class="mini-badge">
+                    SEARCH RESULTS
+                </div>
+
+                <h2>
+                    Available donors
+                </h2>
+
+            </div>
+
+
+            <div class="results-count">
+
+                {{ donors|length }}
+
+                {% if donors|length == 1 %}
+                    Donor
+                {% else %}
+                    Donors
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+
+        <div class="donor-grid">
+
+
+            {% for donor in donors %}
+
+
+                <div class="donor-card">
+
+
+                    <!-- CARD TOP -->
+
+                    <div class="donor-card-top">
+
+
+                        <div class="donor-avatar">
+
+                            {{ donor["name"][0]|upper }}
+
+                        </div>
+
+
+                        <div class="donor-main-info">
+
+                            <h3>
+                                {{ donor["name"] }}
+                            </h3>
+
+                            <span>
+                                📍 {{ donor["location"] }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="blood-badge">
+
+                            {{ donor["blood_group"] }}
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- DONOR DETAILS -->
+
+                    <div class="donor-details">
+
+
+                        <div class="donor-detail">
+
+                            <span>
+                                Last Donation
+                            </span>
+
+                            <strong>
+                                {{ donor["last_donation"] }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="donor-detail">
+
+                            <span>
+                                Next Eligible
+                            </span>
+
+                            <strong>
+                                {{ donor["next_donation"] }}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- STATUS -->
+
+                    <div class="donor-status-row">
+
+
+                        <div>
+
+                            {% if donor["verification_status"] == "Verified" %}
+
+                                <span class="verified-text">
+                                    ✓ Verified Donor
+                                </span>
+
+                            {% elif donor["verification_status"] == "Rejected" %}
+
+                                <span class="rejected-text">
+                                    ✕ Rejected
+                                </span>
+
+                            {% else %}
+
+                                <span class="pending-text">
+                                    ● Pending Verification
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <span class="available-pill">
+                            ● Available
+                        </span>
+
+
+                    </div>
+
+
+
+                    <!-- CONTACT -->
+
+                    <a href="tel:{{ donor['phone'] }}"
+                       class="contact-donor">
+
+                        📞 Contact Donor
+
+                    </a>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <!-- =================================================
+             NO RESULTS
+        ================================================= -->
+
+        <div class="no-results">
+
+
+            <div class="no-results-icon">
+                🩸
+            </div>
+
+
+            <div class="mini-badge">
+                NO MATCH FOUND
+            </div>
+
+
+            <h2>
+                No suitable donor found.
+            </h2>
+
+
+            <p>
+
+                We couldn't find a verified and available
+                donor matching your search.
+
+                Try another blood group or location.
+
+            </p>
+
+
+            <div class="no-results-buttons">
+
+                <a href="/find-blood"
+                   class="premium-btn">
+
+                    🔄 Search Again
+
+                </a>
+
+
+                <a href="/register"
+                   class="premium-btn outline">
+
+                    🩸 Become a Donor
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    {% endif %}
+
+
+</section>
+
+
+
+<!-- =====================================================
+     INFORMATION STRIP
+===================================================== -->
+
+<section class="search-info-strip">
+
+
+    <div class="search-info-item">
+
+        <div class="search-info-icon">
+            🛡️
+        </div>
+
+        <div>
+
+            <strong>
+                Verified Donors
+            </strong>
+
+            <span>
+                Donors are displayed after admin verification.
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="search-info-item">
+
+        <div class="search-info-icon">
+            📍
+        </div>
+
+        <div>
+
+            <strong>
+                Location Based
+            </strong>
+
+            <span>
+                Search donors using their registered location.
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="search-info-item">
+
+        <div class="search-info-icon">
+            ❤️
+        </div>
+
+        <div>
+
+            <strong>
+                Every Drop Matters
+            </strong>
+
+            <span>
+                Your donation can help someone in need.
+            </span>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta">
+
+
+    <div>
+
+        <span>
+            ❤️ EVERY DROP MATTERS
+        </span>
+
+        <h2>
+
+            Can't find a donor?
+            <br>
+
+            Become one.
+
+        </h2>
+
+        <p>
+            Register today and become part of the donor community.
+        </p>
+
+    </div>
+
+
+    <a href="/register"
+       class="cta-button">
+
+        Become a Donor →
+
+    </a>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <div class="footer-main">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+
+            <div class="logo">
+
+
+                <div class="logo-drop">
+                    🩸
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Blood Finder
+                    </strong>
+
+                    <small>
+                        Every Drop Matters
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+            <p>
+
+                Connecting blood donors with people
+                who need them.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- EXPLORE -->
+
+        <div class="footer-links">
+
+
+            <strong>
+                Explore
+            </strong>
+
+
+            <a href="/">
+                Home
+            </a>
+
+
+            <a href="/find-blood">
+                Find Blood
+            </a>
+
+
+            <a href="/register">
+                Become a Donor
+            </a>
+
+
+            <a href="/blood-info">
+                Blood Info
+            </a>
+
+
+            <a href="/about">
+                About
+            </a>
+
+
+        </div>
+
+
+
+        <!-- PROJECT -->
+
+        <div class="footer-links">
+
+
+            <strong>
+                Project
+            </strong>
+
+
+            <span>
+                Blood Finder
+            </span>
+
+
+            <span>
+                College Project
+            </span>
+
+
+            <span>
+                2026
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        © 2026 Blood Finder.
+        Built with ❤️ to help save lives.
+
+    </div>
+
+
+</footer>
+
+
+</body>
+
+</html>

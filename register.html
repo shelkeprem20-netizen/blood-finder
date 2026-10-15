@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Become a Donor | Blood Finder</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-drop">
+            🩸
+        </div>
+
+        <div>
+            <strong>Blood Finder</strong>
+            <small>Every Drop Matters</small>
+        </div>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/find-blood">
+            Find Blood
+        </a>
+
+        <a href="/register" class="active">
+            Become a Donor
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- REGISTRATION HERO -->
+
+<section class="register-hero">
+
+    <div class="mini-badge">
+        BECOME A BLOOD DONOR
+    </div>
+
+    <h1>
+        Your decision
+        <span>can save a life.</span>
+    </h1>
+
+    <p>
+        Register as a blood donor and help connect
+        someone in need with a potential donor.
+    </p>
+
+</section>
+
+
+
+<!-- REGISTRATION AREA -->
+
+<section class="register-section">
+
+
+    <!-- INFORMATION PANEL -->
+
+    <div class="register-info">
+
+        <div class="info-blood-icon">
+            🩸
+        </div>
+
+        <div class="mini-badge">
+            MAKE A DIFFERENCE
+        </div>
+
+        <h2>
+            One registration.
+            <br>
+            A potential lifeline.
+        </h2>
+
+        <p>
+            By registering, you make your availability
+            visible to people searching for compatible
+            blood donors.
+        </p>
+
+
+        <div class="register-points">
+
+            <div class="register-point">
+
+                <span>✓</span>
+
+                <div>
+                    <strong>Your information</strong>
+                    <small>Used for donor matching.</small>
+                </div>
+
+            </div>
+
+
+            <div class="register-point">
+
+                <span>✓</span>
+
+                <div>
+                    <strong>Location based matching</strong>
+                    <small>Helps find suitable donors.</small>
+                </div>
+
+            </div>
+
+
+            <div class="register-point">
+
+                <span>✓</span>
+
+                <div>
+                    <strong>Availability status</strong>
+                    <small>Shows whether you are available.</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FORM -->
+
+    <div class="register-card">
+
+        <div class="register-card-heading">
+
+            <div>
+                <h2>Donor Registration</h2>
+
+                <p>
+                    Enter your details below.
+                </p>
+            </div>
+
+            <div class="form-number">
+                01
+            </div>
+
+        </div>
+
+
+        {% if request.args.get("success") %}
+
+        <div class="success-message">
+
+            ✓ Registration successful!
+
+            <span>
+                Thank you for becoming a donor.
+            </span>
+
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST" action="/register">
+
+
+            <!-- NAME -->
+
+            <div class="form-row">
+
+                <div class="professional-field">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="professional-field">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter phone number"
+                        required>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BLOOD GROUP -->
+
+            <div class="professional-field">
+
+                <label for="blood_group">
+                    Blood Group
+                </label>
+
+                <select
+                    id="blood_group"
+                    name="blood_group"
+                    required>
+
+                    <option value="">
+                        Select your blood group
+                    </option>
+
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- LOCATION -->
+
+            <div class="professional-field">
+
+                <label for="location">
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="City / Area"
+                    required>
+
+            </div>
+
+
+
+            <!-- DONATION DATE -->
+
+            <div class="professional-field">
+
+                <label for="last_donation">
+                    Last Blood Donation
+                </label>
+
+                <input
+                    type="date"
+                    id="last_donation"
+                    name="last_donation"
+                    required>
+
+                <small class="field-help">
+                    Enter your most recent blood donation date.
+                </small>
+
+            </div>
+
+
+
+            <!-- AVAILABILITY -->
+
+            <div class="professional-field">
+
+                <label for="availability">
+                    Current Availability
+                </label>
+
+                <select
+                    id="availability"
+                    name="availability"
+                    required>
+
+                    <option value="Available">
+                        🟢 Available
+                    </option>
+
+                    <option value="Not Available">
+                        🔴 Not Available
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="register-submit">
+
+                🩸 Register as a Donor
+
+            </button>
+
+
+            <p class="form-note">
+                By registering, you agree to provide accurate
+                information for blood donor matching.
+            </p>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- BOTTOM CTA -->
+
+<section class="register-cta">
+
+    <div>
+
+        <span>
+            EVERY DROP COUNTS
+        </span>
+
+        <h2>
+            Someone out there
+            may need your help.
+        </h2>
+
+    </div>
+
+    <div class="cta-heart">
+        ❤️
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <div class="logo-drop">
+                    🩸
+                </div>
+
+                <div>
+
+                    <strong>Blood Finder</strong>
+
+                    <small>
+                        Every Drop Matters
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p>
+                Connecting blood donors with people
+                who need them.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <strong>Explore</strong>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/find-blood">
+                Find Blood
+            </a>
+
+            <a href="/register">
+                Become a Donor
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <strong>Project</strong>
+
+            <span>Blood Finder</span>
+            <span>College Project</span>
+            <span>2026</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 Blood Finder.
+        Built with ❤️ to help save lives.
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

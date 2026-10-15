@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blood Donation | Blood Finder</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-drop">
+            🩸
+        </div>
+
+        <div>
+            <strong>Blood Finder</strong>
+            <small>Every Drop Matters</small>
+        </div>
+
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/find-blood">
+            Find Blood
+        </a>
+
+        <a href="/register">
+            Become a Donor
+        </a>
+
+        <a href="/blood-info" class="active">
+            Blood Info
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="blood-info-hero">
+
+    <div class="mini-badge">
+        BLOOD DONATION
+    </div>
+
+    <h1>
+        Give blood.
+        <br>
+        <span>Give hope.</span>
+    </h1>
+
+    <p>
+        Every blood donation can help patients who need
+        blood during emergencies, treatments and surgeries.
+    </p>
+
+</section>
+
+
+<!-- ================= WHY DONATE ================= -->
+
+<section class="info-section">
+
+    <div class="info-heading">
+
+        <div class="mini-badge">
+            WHY DONATE BLOOD?
+        </div>
+
+        <h2>
+            A small act can<br>
+            make a big difference.
+        </h2>
+
+        <p>
+            Donated blood is an important part of modern
+            healthcare. Hospitals need a reliable supply
+            for patients who require transfusions.
+        </p>
+
+    </div>
+
+
+    <div class="info-cards">
+
+        <div class="info-card">
+
+            <div class="info-card-icon">
+                ❤️
+            </div>
+
+            <h3>
+                Help Patients
+            </h3>
+
+            <p>
+                Your donation can contribute to the blood
+                supply used for patients who require
+                transfusions.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-card-icon">
+                🏥
+            </div>
+
+            <h3>
+                Support Hospitals
+            </h3>
+
+            <p>
+                Maintaining an adequate blood supply helps
+                hospitals respond to medical needs.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-card-icon">
+                🩸
+            </div>
+
+            <h3>
+                Every Drop Matters
+            </h3>
+
+            <p>
+                Blood cannot simply be manufactured for
+                routine transfusion needs. Donations are vital.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BLOOD GROUPS ================= -->
+
+<section class="blood-groups-section">
+
+    <div class="info-heading center">
+
+        <div class="mini-badge">
+            KNOW YOUR BLOOD GROUP
+        </div>
+
+        <h2>
+            The 8 main blood groups.
+        </h2>
+
+        <p>
+            Blood groups are commonly classified using the
+            ABO and Rh systems.
+        </p>
+
+    </div>
+
+
+    <div class="blood-group-grid">
+
+        <div class="blood-group-box">
+            <strong>A+</strong>
+            <span>Positive</span>
+        </div>
+
+        <div class="blood-group-box">
+            <strong>A−</strong>
+            <span>Negative</span>
+        </div>
+
+        <div class="blood-group-box">
+            <strong>B+</strong>
+            <span>Positive</span>
+        </div>
+
+        <div class="blood-group-box">
+            <strong>B−</strong>
+            <span>Negative</span>
+        </div>
+
+        <div class="blood-group-box">
+            <strong>AB+</strong>
+            <span>Positive</span>
+        </div>
+
+        <div class="blood-group-box">
+            <strong>AB−</strong>
+            <span>Negative</span>
+        </div>
+
+        <div class="blood-group-box">
+            <strong>O+</strong>
+            <span>Positive</span>
+        </div>
+
+        <div class="blood-group-box">
+            <strong>O−</strong>
+            <span>Negative</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROCESS ================= -->
+
+<section class="info-section">
+
+    <div class="info-heading center">
+
+        <div class="mini-badge">
+            DONATION PROCESS
+        </div>
+
+        <h2>
+            What happens when<br>
+            you donate?
+        </h2>
+
+        <p>
+            The donation process generally consists of
+            several simple steps.
+        </p>
+
+    </div>
+
+
+    <div class="donation-steps">
+
+        <div class="donation-step">
+
+            <div class="donation-number">
+                01
+            </div>
+
+            <h3>
+                Registration
+            </h3>
+
+            <p>
+                Provide your basic information and complete
+                the donor registration process.
+            </p>
+
+        </div>
+
+
+        <div class="donation-step">
+
+            <div class="donation-number">
+                02
+            </div>
+
+            <h3>
+                Health Check
+            </h3>
+
+            <p>
+                Staff check relevant health information and
+                determine whether you can donate.
+            </p>
+
+        </div>
+
+
+        <div class="donation-step">
+
+            <div class="donation-number">
+                03
+            </div>
+
+            <h3>
+                Donation
+            </h3>
+
+            <p>
+                Blood is collected using sterile equipment
+                by trained healthcare professionals.
+            </p>
+
+        </div>
+
+
+        <div class="donation-step">
+
+            <div class="donation-number">
+                04
+            </div>
+
+            <h3>
+                Recovery
+            </h3>
+
+            <p>
+                After donation, you can rest and follow the
+                advice provided by the donation staff.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ELIGIBILITY ================= -->
+
+<section class="eligibility-section">
+
+    <div class="eligibility-content">
+
+        <div class="mini-badge">
+            BEFORE YOU DONATE
+        </div>
+
+        <h2>
+            Eligibility depends<br>
+            on your health.
+        </h2>
+
+        <p>
+            Blood donation eligibility can depend on factors
+            such as age, health, medications, recent illnesses,
+            travel and previous donations.
+        </p>
+
+        <p>
+            Requirements can vary by blood donation service.
+            Always follow the assessment and advice of qualified
+            healthcare professionals.
+        </p>
+
+    </div>
+
+
+    <div class="eligibility-list">
+
+        <div class="eligibility-item">
+
+            <span>✓</span>
+
+            <div>
+                <strong>
+                    Be in suitable health
+                </strong>
+
+                <small>
+                    Follow the donation centre's health requirements.
+                </small>
+            </div>
+
+        </div>
+
+
+        <div class="eligibility-item">
+
+            <span>✓</span>
+
+            <div>
+                <strong>
+                    Complete the health screening
+                </strong>
+
+                <small>
+                    Answer health questions honestly.
+                </small>
+            </div>
+
+        </div>
+
+
+        <div class="eligibility-item">
+
+            <span>✓</span>
+
+            <div>
+                <strong>
+                    Follow professional advice
+                </strong>
+
+                <small>
+                    The donation centre makes the final eligibility decision.
+                </small>
+            </div>
+
+        </div>
+
+
+        <div class="eligibility-item">
+
+            <span>✓</span>
+
+            <div>
+                <strong>
+                    Keep your information accurate
+                </strong>
+
+                <small>
+                    Accurate donor information helps maintain safer records.
+                </small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FAQ ================= -->
+
+<section class="info-section">
+
+    <div class="info-heading center">
+
+        <div class="mini-badge">
+            COMMON QUESTIONS
+        </div>
+
+        <h2>
+            Blood donation basics.
+        </h2>
+
+    </div>
+
+
+    <div class="faq-container">
+
+        <div class="faq-card">
+
+            <h3>
+                How often can I donate blood?
+            </h3>
+
+            <p>
+                The interval depends on the type of donation,
+                your health and the rules followed by the
+                donation service. Follow the interval given
+                by the healthcare professional.
+            </p>
+
+        </div>
+
+
+        <div class="faq-card">
+
+            <h3>
+                Can everyone donate blood?
+            </h3>
+
+            <p>
+                No. Donors must meet the eligibility criteria
+                of the blood donation service. A health screening
+                is performed before donation.
+            </p>
+
+        </div>
+
+
+        <div class="faq-card">
+
+            <h3>
+                Why is blood donation important?
+            </h3>
+
+            <p>
+                Blood and blood components are needed for many
+                medical treatments, surgeries and emergencies.
+            </p>
+
+        </div>
+
+
+        <div class="faq-card">
+
+            <h3>
+                What should I do before donating?
+            </h3>
+
+            <p>
+                Follow the instructions provided by your
+                donation centre and provide accurate health
+                information during screening.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="info-cta">
+
+    <div>
+
+        <span>
+            EVERY DROP MATTERS
+        </span>
+
+        <h2>
+            Ready to become<br>
+            a donor?
+        </h2>
+
+        <p>
+            Register with Blood Finder and become part
+            of the donor community.
+        </p>
+
+    </div>
+
+
+    <a href="/register">
+        Become a Donor →
+    </a>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-main">
+
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <div class="logo-drop">
+                    🩸
+                </div>
+
+                <div>
+
+                    <strong>
+                        Blood Finder
+                    </strong>
+
+                    <small>
+                        Every Drop Matters
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p>
+                Connecting blood donors with people
+                who need them.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <strong>
+                Explore
+            </strong>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/find-blood">
+                Find Blood
+            </a>
+
+            <a href="/register">
+                Become a Donor
+            </a>
+
+            <a href="/blood-info">
+                Blood Info
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <strong>
+                Project
+            </strong>
+
+            <span>
+                Blood Finder
+            </span>
+
+            <span>
+                College Project
+            </span>
+
+            <span>
+                2026
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 Blood Finder.
+        Built with ❤️ to help save lives.
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>

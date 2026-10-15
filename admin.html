@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Panel | Blood Finder</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-drop">
+            🩸
+        </div>
+
+        <div>
+
+            <strong>
+                Blood Finder
+            </strong>
+
+            <small>
+                Admin Panel
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/find-blood">
+            Find Blood
+        </a>
+
+        <a href="/register">
+            Become a Donor
+        </a>
+
+        <a href="/admin" class="active">
+            Admin
+        </a>
+
+        <a href="/admin/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= ADMIN HERO ================= -->
+
+<section class="admin-hero">
+
+    <div class="mini-badge">
+        ADMINISTRATION
+    </div>
+
+    <h1>
+        Donor
+        <span>Management.</span>
+    </h1>
+
+    <p>
+        Review registered donors and manage
+        their medical verification status.
+    </p>
+
+</section>
+
+
+
+<!-- ================= ADMIN CONTENT ================= -->
+
+<section class="admin-section">
+
+
+    <!-- HEADER -->
+
+    <div class="admin-header">
+
+        <div>
+
+            <div class="mini-badge">
+                REGISTERED DONORS
+            </div>
+
+            <h2>
+                Donor Management
+            </h2>
+
+        </div>
+
+
+        <div class="admin-count">
+
+            {{ donors|length }} Donor(s)
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DONOR TABLE -->
+
+    <div class="admin-table-container">
+
+        {% if donors %}
+
+        <table class="admin-table">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Donor
+                    </th>
+
+                    <th>
+                        Blood Group
+                    </th>
+
+                    <th>
+                        Location
+                    </th>
+
+                    <th>
+                        Last Donation
+                    </th>
+
+                    <th>
+                        Availability
+                    </th>
+
+                    <th>
+                        Verification
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for donor in donors %}
+
+                <tr>
+
+
+                    <!-- DONOR -->
+
+                    <td>
+
+                        <div class="admin-donor">
+
+                            <div class="admin-avatar">
+
+                                {{ donor["name"][0]|upper }}
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    {{ donor["name"] }}
+                                </strong>
+
+                                <small>
+                                    {{ donor["phone"] }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+
+                    <!-- BLOOD GROUP -->
+
+                    <td>
+
+                        <span class="admin-blood">
+
+                            {{ donor["blood_group"] }}
+
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- LOCATION -->
+
+                    <td>
+
+                        {{ donor["location"] }}
+
+                    </td>
+
+
+
+                    <!-- LAST DONATION -->
+
+                    <td>
+
+                        {{ donor["last_donation"] }}
+
+                    </td>
+
+
+
+                    <!-- AVAILABILITY -->
+
+                    <td>
+
+                        {% if donor["availability"] == "Available" %}
+
+                            <span class="status-available">
+                                ● Available
+                            </span>
+
+                        {% else %}
+
+                            <span class="status-unavailable">
+                                ● Not Available
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+
+                    <!-- VERIFICATION -->
+
+                    <td>
+
+                        {% if donor["verification_status"] == "Verified" %}
+
+                            <span class="verification-verified">
+                                ✓ Verified
+                            </span>
+
+                        {% elif donor["verification_status"] == "Rejected" %}
+
+                            <span class="verification-rejected">
+                                ✕ Rejected
+                            </span>
+
+                        {% else %}
+
+                            <span class="verification-pending">
+                                ● Pending
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+
+                    <!-- ACTIONS -->
+
+                    <td>
+
+                        <div class="admin-actions">
+
+                            <a
+                                href="/admin/verify/{{ donor['id'] }}/Verified"
+                                class="verify-btn">
+
+                                ✓ Verify
+
+                            </a>
+
+
+                            <a
+                                href="/admin/verify/{{ donor['id'] }}/Pending"
+                                class="pending-btn">
+
+                                ↻ Pending
+
+                            </a>
+
+
+                            <a
+                                href="/admin/verify/{{ donor['id'] }}/Rejected"
+                                class="reject-btn">
+
+                                ✕ Reject
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        {% else %}
+
+
+        <!-- EMPTY STATE -->
+
+        <div class="admin-empty">
+
+            <div>
+                🩸
+            </div>
+
+            <h2>
+                No donors registered yet
+            </h2>
+
+            <p>
+                Registered donors will appear here.
+            </p>
+
+            <a href="/register">
+                Register a Donor
+            </a>
+
+        </div>
+
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= ADMIN INFO ================= -->
+
+<section class="admin-info">
+
+    <div>
+
+        <div class="mini-badge">
+            IMPORTANT
+        </div>
+
+        <h2>
+            Verification matters.
+        </h2>
+
+        <p>
+            Donor verification should be performed
+            only after appropriate medical or
+            administrative checks.
+        </p>
+
+    </div>
+
+
+    <div class="admin-info-icon">
+        🛡️
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-main">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <div class="logo-drop">
+                    🩸
+                </div>
+
+                <div>
+
+                    <strong>
+                        Blood Finder
+                    </strong>
+
+                    <small>
+                        Every Drop Matters
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <p>
+                Connecting blood donors with people
+                who need them.
+            </p>
+
+        </div>
+
+
+
+        <!-- EXPLORE -->
+
+        <div class="footer-links">
+
+            <strong>
+                Explore
+            </strong>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/find-blood">
+                Find Blood
+            </a>
+
+            <a href="/register">
+                Become a Donor
+            </a>
+
+        </div>
+
+
+
+        <!-- PROJECT -->
+
+        <div class="footer-links">
+
+            <strong>
+                Project
+            </strong>
+
+            <span>
+                Blood Finder
+            </span>
+
+            <span>
+                College Project
+            </span>
+
+            <span>
+                2026
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        © 2026 Blood Finder.
+        Built with ❤️ to help save lives.
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>
